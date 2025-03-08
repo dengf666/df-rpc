@@ -1,0 +1,4 @@
+jdk=com.df.rpc.serializer.JdkSerializer
+hessian=com.df.rpc.serializer.HessianSerializer
+json=com.df.rpc.serializer.JsonSerializer
+kryo=com.df.rpc.serializer.KryoSerializer
