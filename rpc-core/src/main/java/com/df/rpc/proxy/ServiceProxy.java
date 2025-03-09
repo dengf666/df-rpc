@@ -1,33 +1,29 @@
 package com.df.rpc.proxy;
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.IdUtil;
 import com.df.rpc.RpcApplication;
 import com.df.rpc.config.RpcConfig;
 import com.df.rpc.constant.RpcConstant;
 import com.df.rpc.fault.retry.RetryStrategy;
 import com.df.rpc.fault.retry.RetryStrategyFactory;
+import com.df.rpc.fault.tolerant.TolerantStrategy;
+import com.df.rpc.fault.tolerant.TolerantStrategyFactory;
 import com.df.rpc.loadbalancer.LoadBalancer;
 import com.df.rpc.loadbalancer.LoadbalancerFactory;
 import com.df.rpc.model.RpcRequest;
 import com.df.rpc.model.RpcResponse;
 import com.df.rpc.model.ServiceMetaInfo;
-import com.df.rpc.protocol.*;
 import com.df.rpc.registry.Registry;
 import com.df.rpc.registry.RegistryFactory;
 import com.df.rpc.serializer.Serializer;
 import com.df.rpc.serializer.SerializerFactory;
 import com.df.rpc.server.tcp.VertxTcpClient;
-import com.df.rpc.spi.SpiLoader;
-import io.vertx.core.Vertx;
-import io.vertx.core.buffer.Buffer;
-import io.vertx.core.net.NetClient;
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
+
 
 
 
@@ -71,8 +67,14 @@ public class ServiceProxy implements InvocationHandler {
             ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParam, serviceMetaInfoList);
             // 发送 TCP 请求
            //进行重试
-            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
-            RpcResponse rpcResponse = retryStrategy.doRetry(() -> (RpcResponse) VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo));
+            RpcResponse rpcResponse = null;
+            try {
+                RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+                 rpcResponse = retryStrategy.doRetry(() -> (RpcResponse) VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo));
+            }catch (Exception e){
+                TolerantStrategy tolerantStrategy = TolerantStrategyFactory.getInstance(rpcConfig.getTolerantStrategy());
+                tolerantStrategy.doTolerant(null,e);
+            }
             return rpcResponse.getData();
         } catch (IOException e) {
             e.printStackTrace();

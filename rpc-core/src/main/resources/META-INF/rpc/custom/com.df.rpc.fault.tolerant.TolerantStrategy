@@ -1,0 +1,4 @@
+failBack=com.df.rpc.fault.tolerant.FailBackTolerantStrategy
+failFast=com.df.rpc.fault.tolerant.FailFastTolerantStrategy
+failOver=com.df.rpc.fault.tolerant.FailOverTolerantStrategy
+failSafe=com.df.rpc.fault.tolerant.FailSafeTolerantStrategy
