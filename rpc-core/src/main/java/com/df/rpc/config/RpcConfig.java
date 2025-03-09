@@ -1,5 +1,6 @@
 package com.df.rpc.config;
 
+import com.df.rpc.fault.retry.RetryStrategyKeys;
 import com.df.rpc.loadbalancer.LoadBalancerKeys;
 import lombok.Data;
 
@@ -34,6 +35,10 @@ public class RpcConfig {
      */
     private String serializer = "json";
 
+    /**
+     * 重试策略
+     */
+    private String retryStrategy = RetryStrategyKeys.NO;
     /**
      * 负载均衡器
      */

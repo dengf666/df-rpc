@@ -1,0 +1,2 @@
+no=com.df.rpc.fault.retry.NoRetryStrategy
+fixedInterval=com.df.rpc.fault.retry.FixedIntervalRetryStrategy
