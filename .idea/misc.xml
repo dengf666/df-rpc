@@ -8,6 +8,11 @@
         <option value="$PROJECT_DIR$/rpc-provider/pom.xml" />
         <option value="$PROJECT_DIR$/rpc-core/pom.xml" />
         <option value="$PROJECT_DIR$/rpc-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/rpc-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/rpc-spring-boot-statrt/pom.xml" />
+        <option value="$PROJECT_DIR$/rpc-spring-boot-start/pom.xml" />
+        <option value="$PROJECT_DIR$/rpc-springboot-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/rpc-springboot-provider/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />

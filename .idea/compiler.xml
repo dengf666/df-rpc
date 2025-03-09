@@ -13,11 +13,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="rpc-springboot-provider" />
+        <module name="rpc-spring-boot-start" />
         <module name="rpc-common" />
         <module name="rpc-provider" />
+        <module name="rpc-springboot-consumer" />
         <module name="rpc-consumer" />
         <module name="rpc-core" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="rpc-spring-boot-starter" target="1.5" />
+      <module name="rpc-spring-boot-statrt" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
