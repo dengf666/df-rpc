@@ -13,7 +13,7 @@ import com.df.rpc.server.tcp.VertxTcpServer;
 /**
  * 服务提供者示例
  */
-public class ProviderExample {
+public class ProviderExample3 {
 
     public static void main(String[] args) {
         // RPC 框架初始化
@@ -30,7 +30,7 @@ public class ProviderExample {
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
         serviceMetaInfo.setServiceName(serviceName);
         serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
-        serviceMetaInfo.setServicePort(rpcConfig.getServerPort());
+        serviceMetaInfo.setServicePort(8125);
         try {
             registry.register(serviceMetaInfo);
         } catch (Exception e) {
@@ -38,6 +38,6 @@ public class ProviderExample {
         }
         // 启动 TCP 服务
         VertxTcpServer vertxTcpServer = new VertxTcpServer();
-        vertxTcpServer.doStart(8123);
+        vertxTcpServer.doStart(8125);
     }
 }

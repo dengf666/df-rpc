@@ -1,5 +1,6 @@
 package com.df.rpc.config;
 
+import com.df.rpc.loadbalancer.LoadBalancerKeys;
 import lombok.Data;
 
 /**
@@ -28,7 +29,15 @@ public class RpcConfig {
      */
     private Integer serverPort = 8123;
 
+    /**
+     * 序列化方式
+     */
     private String serializer = "json";
+
+    /**
+     * 负载均衡器
+     */
+    private String loadBalancer = LoadBalancerKeys.RANDOM;
 
     private RegistryConfig registry = new RegistryConfig();
 

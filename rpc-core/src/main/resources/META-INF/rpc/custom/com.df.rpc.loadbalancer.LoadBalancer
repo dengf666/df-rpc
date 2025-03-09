@@ -1,0 +1,2 @@
+roundRobin=com.df.rpc.loadbalancer.RoundRobinLoadBalancer
+random=com.df.rpc.loadbalancer.RandomLoadBalancer

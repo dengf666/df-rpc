@@ -67,6 +67,8 @@ public class TcpServerHandler implements Handler<NetSocket> {
                 throw new RuntimeException("协议消息解码错误");
             }
             RpcRequest rpcRequest = protocolMessage.getBody();
+
+            System.out.println("收到请求：-----------------------------------------------------------------------------" + rpcRequest);
             ProtocolMessage.Header header = protocolMessage.getHeader();
 
             // 处理请求
